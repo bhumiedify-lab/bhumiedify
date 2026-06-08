@@ -1,4 +1,4 @@
-<index.html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -494,7 +494,7 @@ function SlidesScreen(){
       e("button",{onClick:()=>setIdx(i=>Math.max(0,i-1)),disabled:idx===0,style:{flex:1,padding:"10px",background:"#fff",border:"1.5px solid "+C.bord,borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===0?"not-allowed":"pointer",opacity:idx===0?.4:1,color:C.txt}},"‹ Prev"),
       e("div",{style:{display:"flex",alignItems:"center",gap:4}},
         SLIDES.map((_,i)=>e("div",{key:i,style:{width:i===idx?20:6,height:6,borderRadius:3,background:i===idx?C.pri:C.bord,transition:"width .3s"}}))),
-      e("button",{onClick:()=>setIdx(i=>Math.min(SLIDES.length-1,i+1)),disabled:idx===SLIDES.length-1,style:{flex:1,padding:"10px",background:idx===SLIDES.length-1?"#F0EEE8":"linear-gradient(135deg,#C24E1E,#D4700A)",border:"none",borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===SLIDES.length-1?"not-allowed":"pointer",color:idx===SLIDES.length-1?C.txt3:"#fff"}},idx===SLIDES.length-1?"✅ Done":"Next ›")))));
+      e("button",{onClick:()=>setIdx(i=>Math.min(SLIDES.length-1,i+1)),disabled:idx===SLIDES.length-1,style:{flex:1,padding:"10px",background:idx===SLIDES.length-1?"#F0EEE8":"linear-gradient(135deg,#C24E1E,#D4700A)",border:"none",borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===SLIDES.length-1?"not-allowed":"pointer",color:idx===SLIDES.length-1?C.txt3:"#fff"}},idx===SLIDES.length-1?"✅ Done":"Next ›")));
 }
 
 // ── CONNECT SCREEN ──
@@ -991,10 +991,10 @@ function FinanceScreen({students,feeData,onSaveFee,staffList,onSaveStaff,receipt
       e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:13,fontWeight:800,padding:"8px 0",borderTop:"2px solid "+C.red,marginTop:4,marginBottom:12,fontFamily:"Nunito"}},e("span",null,"Total Expenses"),e("span",{style:{color:C.red}},fmt(totE))),
       e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:14,fontWeight:900,padding:"12px 14px",borderRadius:12,background:net>=0?C.grnL:C.redL,fontFamily:"Nunito"}},
         e("span",{style:{color:net>=0?C.grn:C.red}},"Net "+(net>=0?"Surplus ✅":"Deficit ⚠️")),
-        e("span",{style:{color:net>=0?C.grn:C.red}},fmt(Math.abs(net))))));
+        e("span",{style:{color:net>=0?C.grn:C.red}},fmt(Math.abs(net))));
 }
 
-// ── NOTEBOOK ──
+// ── NOTEBOOK ──)));
 function NotebookScreen({notes,onSaveNotes,tasks,onSaveTasks,isAdmin,authName}){
   const [sub,setSub]=useState("notes");
   const [nF,setNF]=useState({title:"",body:"",prog:"All Programs",tag:"General"});
@@ -1043,7 +1043,7 @@ function NotebookScreen({notes,onSaveNotes,tasks,onSaveTasks,isAdmin,authName}){
                 e("div",{style:{fontSize:12,fontWeight:700,color:t.done?C.txt3:C.txt,textDecoration:t.done?"line-through":"none"}},t.title),
                 e("div",{style:{display:"flex",gap:5,marginTop:4,flexWrap:"wrap"}},
                   t.due&&e(Tag,{bg:C.bg,col:C.txt3},"📅 "+t.due),
-                  e(Tag,{bg:t.priority==="High"?C.redL:t.priority==="Medium"?C.priL:C.grnL,col:t.priority==="High"?C.red:t.priority==="Medium"?C.priD:C.grn},t.priority)))))))));
+                  e(Tag,{bg:t.priority==="High"?C.redL:t.priority==="Medium"?C.priL:C.grnL,col:t.priority==="High"?C.red:t.priority==="Medium"?C.priD:C.grn},t.priority))))))))));
 }
 
 // ── ACTIVITIES ──
