@@ -991,10 +991,10 @@ function FinanceScreen({students,feeData,onSaveFee,staffList,onSaveStaff,receipt
       e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:13,fontWeight:800,padding:"8px 0",borderTop:"2px solid "+C.red,marginTop:4,marginBottom:12,fontFamily:"Nunito"}},e("span",null,"Total Expenses"),e("span",{style:{color:C.red}},fmt(totE))),
       e("div",{style:{display:"flex",justifyContent:"space-between",fontSize:14,fontWeight:900,padding:"12px 14px",borderRadius:12,background:net>=0?C.grnL:C.redL,fontFamily:"Nunito"}},
         e("span",{style:{color:net>=0?C.grn:C.red}},"Net "+(net>=0?"Surplus ✅":"Deficit ⚠️")),
-        e("span",{style:{color:net>=0?C.grn:C.red}},fmt(Math.abs(net))));
+        e("span",{style:{color:net>=0?C.grn:C.red}},fmt(Math.abs(net)))))));
 }
 
-// ── NOTEBOOK ──)));
+// ── NOTEBOOK ──
 function NotebookScreen({notes,onSaveNotes,tasks,onSaveTasks,isAdmin,authName}){
   const [sub,setSub]=useState("notes");
   const [nF,setNF]=useState({title:"",body:"",prog:"All Programs",tag:"General"});
