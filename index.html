@@ -51,6 +51,17 @@ h1,h2,h3,.heading{font-family:"Nunito",system-ui,sans-serif}
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script>
 "use strict";
+
+  // Global error display for debugging
+  window.onerror = function(msg,src,line,col,err){
+    const d = document.getElementById('err-display');
+    if(d){ d.style.display='block'; d.textContent = 'Error: '+msg+' (line '+line+')'; }
+    return false;
+  };
+  window.addEventListener('unhandledrejection', function(e){
+    const d = document.getElementById('err-display');
+    if(d){ d.style.display='block'; d.textContent = 'Promise error: '+(e.reason||e); }
+  });
 const {createElement:e,useState,useEffect,Fragment} = React;
 
 // ── CONFIG ──
