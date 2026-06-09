@@ -70,7 +70,7 @@ const DEF_USERS=[{username:"admin",password:"bhumi2025",role:"admin",name:"Admin
 const DEF_STUDENTS=[{id:1,admNo:"BE-2025-001",name:"Aarav Sharma",dob:"2022-01-15",program:"🌼 IK 1",parent:"Priya Sharma",phone:"98765 43210",admitted:"June 2025",fees:"Paid",notes:"Very enthusiastic learner."},{id:2,admNo:"BE-2025-002",name:"Meera Reddy",dob:"2023-03-20",program:"🌱 Playgroup",parent:"Sunita Reddy",phone:"91234 56789",admitted:"June 2025",fees:"Pending",notes:"Settling in well."},{id:3,admNo:"BE-2025-003",name:"Arjun Naidu",dob:"2021-08-10",program:"🎒 IK 2",parent:"Rakesh Naidu",phone:"90011 22334",admitted:"July 2025",fees:"Paid",notes:"Excellent in reading."},{id:4,admNo:"BE-2025-004",name:"Siya Pillai",dob:"2024-02-05",program:"🤱 Mom & Toddler",parent:"Divya Pillai",phone:"88990 11223",admitted:"Aug 2025",fees:"Paid",notes:"Loves sensory play."},{id:5,admNo:"BE-2025-005",name:"Rohan Kumar",dob:"2020-11-30",program:"🌟 IK 3",parent:"Amit Kumar",phone:"87654 32109",admitted:"June 2025",fees:"Paid",notes:"School-ready academically."}];
 const DEF_TEACHERS=[{id:1,name:"Fatima Shaikh",role:"Head Teacher",program:"🌟 IK 3",phone:"91234 00001",salary:"₹28,000",joined:"June 2022",rating:4.9,attendance:98,notes:"Exceptional classroom presence."},{id:2,name:"Rekha Pillai",role:"Class Teacher",program:"🎒 IK 2",phone:"91234 00002",salary:"₹22,000",joined:"Aug 2022",rating:4.7,attendance:96,notes:"Strong in phonics."},{id:3,name:"Sneha Agarwal",role:"Class Teacher",program:"🌼 IK 1",phone:"91234 00003",salary:"₹22,000",joined:"Jan 2023",rating:4.6,attendance:94,notes:"Creative and patient."},{id:4,name:"Divya Nair",role:"Class Teacher",program:"🌱 Playgroup",phone:"91234 00004",salary:"₹20,000",joined:"June 2023",rating:4.5,attendance:95,notes:"Excellent at circle time."},{id:5,name:"Preethi Sharma",role:"Class Teacher",program:"🤱 Mom & Toddler",phone:"91234 00005",salary:"₹20,000",joined:"Sep 2023",rating:4.6,attendance:97,notes:"Warm and nurturing."},{id:6,name:"Lakshmi Reddy",role:"Activity Teacher",program:"All Programs",phone:"91234 00006",salary:"₹25,000",joined:"June 2022",rating:4.8,attendance:99,notes:"Hobby Nation specialist."}];
 const DEF_STAFF=[{id:1,name:"Fatima Shaikh",role:"Head Teacher",month:"June 2026",salary:28000,advance:0,deduction:0,bonus:0,mode:"Bank Transfer",paid:true,notes:""},{id:2,name:"Rekha Pillai",role:"Class Teacher",month:"June 2026",salary:22000,advance:0,deduction:0,bonus:0,mode:"Bank Transfer",paid:true,notes:""},{id:3,name:"Sneha Agarwal",role:"Class Teacher",month:"June 2026",salary:22000,advance:0,deduction:0,bonus:0,mode:"Bank Transfer",paid:true,notes:""},{id:4,name:"Divya Nair",role:"Class Teacher",month:"June 2026",salary:20000,advance:0,deduction:0,bonus:0,mode:"Bank Transfer",paid:false,notes:""},{id:5,name:"Preethi Sharma",role:"Class Teacher",month:"June 2026",salary:20000,advance:0,deduction:0,bonus:0,mode:"Bank Transfer",paid:false,notes:""},{id:6,name:"Lakshmi Reddy",role:"Activity Teacher",month:"June 2026",salary:25000,advance:0,deduction:0,bonus:0,mode:"Bank Transfer",paid:true,notes:""},{id:7,name:"Ravi Kumar",role:"Helper / Housekeeping",month:"June 2026",salary:8000,advance:1000,deduction:0,bonus:0,mode:"Cash",paid:true,notes:""},{id:8,name:"Suresh Babu",role:"Security",month:"June 2026",salary:10000,advance:0,deduction:0,bonus:0,mode:"Cash",paid:false,notes:""}];
-const DEF_INFO={name:"Bhumi · Edify Kids",tagline:"Your space to blossom",about:"Bhumi · Edify Kids is a warm, world-class early years learning space in Alwal, Hyderabad. We follow the 3C Curriculum — Character, Content & Competence — in partnership with Edify Kids and Hobby Nation. For children aged 18 months to 6 years.",phone1:"88977 23515",phone2:"80082 28441",whatsapp:"70952 12105",address:"Plot No. 7 & 8, Survey No. 551, Alwal, Medchal, Hyderabad",hours:"9:00 AM – 12:30 PM · Monday to Saturday",instagram:"https://instagram.com/bhumiedifykids",facebook:"https://facebook.com/bhumiedifykids",google:"https://g.page/bhumiedifykids",justdial:"https://justdial.com",mapLink:"https://maps.google.com/?q=Bhumi+Edify+Kids+Alwal+Hyderabad"};
+const DEF_INFO={name:"Bhumi · Edify Kids",tagline:"Your space to blossom",about:"Bhumi · Edify Kids is a warm, world-class early years learning space in Alwal, Hyderabad. We follow the 3C Curriculum — Character, Content & Competence — in partnership with Edify Kids and Hobby Nation. For children aged 18 months to 6 years.",phone1:"88977 23515",phone2:"80082 28441",whatsapp:"70952 12105",address:"Plot No. 7 & 8, Survey No. 551, Alwal, Medchal, Hyderabad",hours:"9:00 AM – 12:30 PM · Monday to Saturday",instagram:"https://instagram.com/bhumiedifykids",facebook:"https://facebook.com/bhumiedifykids",google:"https://g.page/bhumiedifykids",justdial:"https://justdial.com",mapLink:"https://maps.google.com/?q=Bhumi+Edify+Kids+Alwal+Hyderabad",justdial:"https://justdial.com"};
 
 // ── STORAGE (Google Sheets + localStorage fallback) ──
 function lget(k,fb){try{const v=localStorage.getItem("bek_"+k);return v?JSON.parse(v):fb;}catch(e){return fb;}}
@@ -275,230 +275,251 @@ function HomeScreen({info,students,teachers,isAdmin,isTeacher,authName,onEdit}){
 function SlidesScreen(){
   const [idx,setIdx]=useState(0);
   const [showNotes,setShowNotes]=useState(false);
+
   const SLIDES=[
     {
-      icon:"🌻",title:"Welcome to Bhumi · Edify Kids",
+      icon:"🌻", num:1,
+      title:"Welcome to Bhumi · Edify Kids",
       subtitle:"Your Space to Blossom",
       bg:"linear-gradient(135deg,#C24E1E,#D4700A,#E8920C)",
       light:true,
-      points:["Play School & Integrated Kindergarten","Ages 18 months to 6 years","Alwal, Medchal, Hyderabad","Partner: Edify Kids + Hobby Nation"],
-      highlight:"3C Curriculum — Character · Content · Competence",
-      stat:[["5+","Programs"],["1:10","Ratio"],["4.8★","Rating"],["3C","Approach"]],
-      notes:"Start with a warm welcome. Show this slide as parents arrive. Mention your partnership with Edify Kids for academics and Hobby Nation for creative activities. Emphasise that Bhumi is not just a playschool but a holistic learning space."
+      content:() => e("div",null,
+        e("div",{style:{fontSize:13,color:"rgba(255,255,255,.9)",lineHeight:1.8,marginBottom:14}},
+          "We are more than a playschool. Bhumi · Edify Kids is a ",
+          e("strong",null,"world-class early years learning centre"),
+          " in Alwal, Hyderabad — designed to give every child the perfect start in life."),
+        e("div",{style:{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:8,marginBottom:14}},
+          [["5+","Programs"],["1:10","Class Ratio"],["4.8★","Rating"],["3C","Approach"]].map(([v,l])=>
+            e("div",{key:l,style:{background:"rgba(255,255,255,.18)",borderRadius:12,padding:"10px 6px",textAlign:"center"}},
+              e("div",{style:{fontSize:18,fontWeight:900,color:"#fff"}},v),
+              e("div",{style:{fontSize:9,color:"rgba(255,255,255,.8)",marginTop:2,fontWeight:700}},l)))),
+        e("div",{style:{background:"rgba(255,255,255,.18)",borderRadius:14,padding:"12px 14px"}},
+          e("div",{style:{fontSize:11,fontWeight:800,color:"#fff",marginBottom:8}},"🤝 Our Partners"),
+          [["📚","Edify Kids","World-class academic curriculum for ages 1.5–6 yrs"],["🎨","Hobby Nation","Expert-led weekly creative & STEM activity sessions"],["🌿","Bhumi","Our nurturing school environment & 3C philosophy"]].map(([ico,name,desc])=>
+            e("div",{key:name,style:{display:"flex",gap:10,alignItems:"center",marginBottom:8}},
+              e("div",{style:{width:32,height:32,background:"rgba(255,255,255,.25)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}},ico),
+              e("div",null,e("div",{style:{fontSize:11,fontWeight:800,color:"#fff"}},name),e("div",{style:{fontSize:10,color:"rgba(255,255,255,.75)"}},desc)))))),
+      notes:"Start with a warm, confident greeting. Tell parents: \'Thank you for considering Bhumi Edify Kids for your child. What you are about to see is not just a school — it is a carefully designed space where children blossom.\' Show them the stats: 5 programs, small classes, 4.8 star rating. Emphasise the three partners working together."
     },
     {
-      icon:"🌟",title:"The 3C Curriculum",
-      subtitle:"How We Develop Every Child",
+      icon:"🌟", num:2,
+      title:"The 3C Curriculum",
+      subtitle:"Character · Content · Competence",
       bg:"linear-gradient(135deg,#1A6BB5,#0D4F8C)",
       light:true,
-      cards:[
-        {ico:"❤️",title:"Character",body:"Values, empathy, discipline, gratitude and self-confidence. We build who they are, not just what they know."},
-        {ico:"📚",title:"Content",body:"Real textbooks, structured learning, phonics, numeracy and age-appropriate academics — done joyfully."},
-        {ico:"🧠",title:"Competence",body:"Problem-solving, creativity, communication and independence. Skills that last a lifetime."},
-      ],
-      notes:"This is your most important slide. Explain that most schools only focus on content (academics). We focus on all three equally. Give a real example: 'When children cook in our Little Chef days, they learn Content (math/science), Character (sharing, patience) and Competence (following steps, fine motor skills) — all at once.'"
+      content:() => e("div",null,
+        e("div",{style:{fontSize:12,color:"rgba(255,255,255,.85)",lineHeight:1.7,marginBottom:14}},
+          "Most schools focus only on academics. We develop ",e("strong",null,"all three dimensions"),
+          " that research shows determine long-term success."),
+        [
+          {ico:"❤️",title:"Character",col:"#FF6B9D",items:["Empathy & kindness","Self-discipline & patience","Gratitude & respect","Confidence & positive identity","Problem-solving mindset"]},
+          {ico:"📚",title:"Content",col:"#64B5F6",items:["Real Edify Kids textbooks","Phonics & early reading","Numeracy & logical thinking","Science exploration & EVS","Hindi & English language"]},
+          {ico:"🧠",title:"Competence",col:"#81C784",items:["Creative & critical thinking","Communication skills","Fine & gross motor skills","Independence & leadership","Social-emotional intelligence"]},
+        ].map(c=>e("div",{key:c.title,style:{background:"rgba(255,255,255,.15)",borderRadius:14,padding:"12px",marginBottom:10}},
+          e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:8}},
+            e("div",{style:{width:34,height:34,background:c.col+"30",borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}},c.ico),
+            e("div",{style:{fontSize:14,fontWeight:900,color:"#fff"}},c.title)),
+          e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:4}},
+            c.items.map(item=>e("div",{key:item,style:{display:"flex",gap:5,alignItems:"flex-start"}},
+              e("span",{style:{color:c.col,fontSize:10,marginTop:2,flexShrink:0}},"●"),
+              e("span",{style:{fontSize:10,color:"rgba(255,255,255,.85)",lineHeight:1.5}},item))))))),
+      notes:"This is your most powerful slide. Say: \'Most schools only fill children with Content — textbooks and marks. We build all three Cs equally every single day.\' Give a real example: \'When a child paints in art class — they develop Content (colors, shapes), Character (patience, self-expression) and Competence (fine motor skills, creativity) all at once. That is the Bhumi difference.\'"
     },
     {
-      icon:"🗓",title:"A Day at Bhumi Edify",
-      subtitle:"9:00 AM to 12:30 PM · Monday to Saturday",
+      icon:"🗓", num:3,
+      title:"A Day at Bhumi Edify Kids",
+      subtitle:"Every minute is purposefully designed",
       bg:"linear-gradient(135deg,#FEF0D6,#FFF4E8)",
       light:false,
-      timeline:[
-        {time:"9:00",ico:"🌅",act:"Morning Circle & Attendance"},
-        {time:"9:15",ico:"📖",act:"3C Learning Block — Language / Math / EVS"},
-        {time:"10:00",ico:"📚",act:"Textbook Activity (Edify Kids curriculum)"},
-        {time:"10:30",ico:"🍎",act:"Snack Time & Free Conversation"},
-        {time:"10:45",ico:"🎨",act:"Hobby Nation — Art / Music / Drama / STEM"},
-        {time:"11:30",ico:"🌿",act:"Story Time & Circle Discussion"},
-        {time:"12:00",ico:"🏃",act:"Free Play & Outdoor Activity"},
-        {time:"12:20",ico:"🤝",act:"Goodbye Circle — Reflection & Values"},
-      ],
-      notes:"Walk parents through a real day. Emphasise that every activity has a 3C purpose. Snack time is also learning — conversation, sharing, fine motor skills. Hobby Nation is not 'play time' — it's structured creative learning led by a specialist."
+      content:() => e("div",null,
+        e("div",{style:{fontSize:11,color:C.txt3,marginBottom:12,lineHeight:1.6}},
+          "Our 3.5-hour school day is carefully structured to balance learning, creativity, play and reflection — building all 3Cs naturally."),
+        [
+          {t:"9:00",ico:"🌅",act:"Morning Circle & Attendance",detail:"Welcome ritual, weather, calendar, sharing — builds language, confidence and belonging."},
+          {t:"9:15",ico:"📖",act:"3C Learning Block",detail:"Structured lesson — phonics, math, EVS or language. Engaging, hands-on, child-paced."},
+          {t:"10:00",ico:"📚",act:"Edify Kids Textbook Time",detail:"Academic curriculum — reading, writing, numeracy with real books and guided practice."},
+          {t:"10:30",ico:"🍎",act:"Snack Break & Conversation",detail:"Even snack time is learning — sharing, fine motor skills, independence and social talk."},
+          {t:"10:45",ico:"🎨",act:"Hobby Nation Activity Session",detail:"Expert-led Art, Music, Drama, Movement or STEM. The favourite part of every child's day!"},
+          {t:"11:30",ico:"📖",act:"Story Time & Values",detail:"Picture books, puppet shows and discussions — builds imagination, empathy and character."},
+          {t:"12:00",ico:"🏃",act:"Free Play & Outdoor Time",detail:"Unstructured play develops gross motor skills, friendship and problem-solving naturally."},
+          {t:"12:20",ico:"🤝",act:"Goodbye Circle",detail:"Reflection, gratitude, preview of tomorrow — ends the day with joy and positivity."},
+        ].map((item,i)=>e("div",{key:i,style:{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10,padding:"8px",background:"rgba(255,255,255,.7)",borderRadius:12}},
+          e("div",{style:{fontSize:9,fontWeight:800,color:C.pri,width:36,flexShrink:0,paddingTop:2}},item.t),
+          e("div",{style:{width:30,height:30,background:C.priL,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}},item.ico),
+          e("div",null,
+            e("div",{style:{fontSize:11,fontWeight:800,color:C.txt,marginBottom:2}},item.act),
+            e("div",{style:{fontSize:10,color:C.txt3,lineHeight:1.5}},item.detail))))),
+      notes:"Walk through the timeline slowly. Parents always love this slide — they see exactly what their child does every minute. Point out: \'There is no wasted time. Even free play is structured learning.\' Highlight that Hobby Nation is not a break — it is a specialist-led session. If parents ask \'what do they actually learn?\' — this slide answers everything."
     },
     {
-      icon:"🎨",title:"Hobby Nation Sessions",
-      subtitle:"Weekly Expert-Led Creative & STEM Activities",
+      icon:"🎨", num:4,
+      title:"Hobby Nation — Creative & STEM",
+      subtitle:"Where talent is discovered and nurtured",
       bg:"linear-gradient(135deg,#6B4EBB,#9B59B6)",
       light:true,
-      grid:[
-        {ico:"🎭",t:"Drama & Storytelling",d:"Confidence, expression & language"},
-        {ico:"🎵",t:"Music & Rhythm",d:"Pattern recognition & emotional development"},
-        {ico:"🖌️",t:"Art & Craft",d:"Fine motor skills & creative thinking"},
-        {ico:"💃",t:"Movement & Dance",d:"Gross motor, coordination & joy"},
-        {ico:"🔬",t:"Junior STEM",d:"Curiosity, logic & problem-solving"},
-        {ico:"🌿",t:"Eco Explorer",d:"Nature, sustainability & character"},
-      ],
-      notes:"Hobby Nation is what makes us truly different. These are not conducted by classroom teachers but by trained activity specialists. Each session is planned with a learning objective tied to the 3C framework. Parents love this — it is included in the fee, no extra cost."
+      content:() => e("div",null,
+        e("div",{style:{fontSize:12,color:"rgba(255,255,255,.85)",lineHeight:1.7,marginBottom:14}},
+          "Hobby Nation sessions are conducted by ",e("strong",null,"trained activity specialists"),
+          " — not classroom teachers. Each session has clear learning objectives tied to our 3C framework."),
+        e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:14}},
+          [
+            {ico:"🎭",t:"Drama & Storytelling",d:"Confidence, expression, language & memory"},
+            {ico:"🎵",t:"Music & Rhythm",d:"Pattern recognition, listening & emotional intelligence"},
+            {ico:"🖌️",t:"Art & Craft",d:"Fine motor skills, creativity & self-expression"},
+            {ico:"💃",t:"Movement & Dance",d:"Gross motor, coordination, body awareness & joy"},
+            {ico:"🔬",t:"Junior STEM",d:"Curiosity, logic, experimentation & problem-solving"},
+            {ico:"🌿",t:"Eco Explorer",d:"Nature, sustainability, observation & gratitude"},
+          ].map(g=>e("div",{key:g.t,style:{background:"rgba(255,255,255,.15)",borderRadius:12,padding:"10px 12px"}},
+            e("div",{style:{fontSize:20,marginBottom:5}},g.ico),
+            e("div",{style:{fontSize:11,fontWeight:800,color:"#fff",marginBottom:3}},g.t),
+            e("div",{style:{fontSize:10,color:"rgba(255,255,255,.75)",lineHeight:1.4}},g.d)))),
+        e("div",{style:{background:"rgba(255,255,255,.18)",borderRadius:12,padding:"10px 14px",textAlign:"center"}},
+          e("div",{style:{fontSize:12,fontWeight:800,color:"#fff",marginBottom:3}},"✅ Included in all programs. No extra charge."),
+          e("div",{style:{fontSize:11,color:"rgba(255,255,255,.8)"}},"Sessions rotate weekly. Children experience all 6 activity types."))),
+      notes:"Parents often ask \'is this included in fees?\' — yes, absolutely. Say: \'Hobby Nation is what makes us truly different. Other schools charge extra for activities. At Bhumi Edify, every child gets these sessions as part of their daily experience.\' Mention that sessions are conducted by specialists trained by Hobby Nation — not by classroom teachers."
     },
     {
-      icon:"📚",title:"Our 5 Programs",
-      subtitle:"Carefully Designed for Every Stage of Growth",
+      icon:"📚", num:5,
+      title:"Our 5 Programs",
+      subtitle:"The right start for every age",
       bg:"linear-gradient(135deg,#1B7A3E,#27AE60)",
       light:true,
-      programs:[
-        {ico:"🤱",n:"Mom & Toddler",age:"18–30 months",fee:"₹6,000/month",desc:"Structured play, sensory development and parent bonding with guidance."},
-        {ico:"🌱",n:"Playgroup",age:"2–3 years",fee:"₹35,000/quarter",desc:"First school experience — social skills, early language and creative play."},
-        {ico:"🌼",n:"IK 1 (Integrated KG 1)",age:"3–4 years",fee:"₹40,000/quarter",desc:"Edify Kids textbooks + Hobby Nation. Reading, writing readiness begins."},
-        {ico:"🎒",n:"IK 2 (Integrated KG 2)",age:"4–5 years",fee:"₹45,000/quarter",desc:"Stronger academics — phonics, numeracy, science exploration & writing."},
-        {ico:"🌟",n:"IK 3 (Integrated KG 3)",age:"5–6 years",fee:"₹50,000 Q1",desc:"Full school readiness — primary school preparation, leadership & independence."},
-      ],
-      notes:"Don't just read out fees. Ask the parent which age group their child is in and focus on that program. Mention the admission fee (₹5,000 one time) and kit fee are separate. Reassure them that Hobby Nation is included in all programs."
+      content:() => e("div",null,
+        [
+          {ico:"🤱",n:"Mom & Toddler",age:"18–30 months",fee:"₹6,000/month",kit:"—",desc:"Structured sensory play and early bonding with parent guidance. The gentlest, warmest introduction to learning.",color:"rgba(255,255,255,.15)"},
+          {ico:"🌱",n:"Playgroup",age:"2–3 years",fee:"₹35,000/quarter",kit:"₹6,899",desc:"First school experience — social skills, early language, music, art and joyful 3C exploration.",color:"rgba(255,255,255,.15)"},
+          {ico:"🌼",n:"IK 1 (Integrated KG 1)",age:"3–4 years",fee:"₹40,000/quarter",kit:"₹7,499",desc:"Edify Kids textbooks begin. Phonics, pre-writing, numeracy and Hobby Nation — every single day.",color:"rgba(255,255,255,.15)"},
+          {ico:"🎒",n:"IK 2 (Integrated KG 2)",age:"4–5 years",fee:"₹45,000/quarter",kit:"₹7,799",desc:"Stronger academics — reading, writing, addition, science exploration and growing independence.",color:"rgba(255,255,255,.15)"},
+          {ico:"🌟",n:"IK 3 (Integrated KG 3)",age:"5–6 years",fee:"₹50,000 (Q1)",kit:"₹8,199",desc:"Full school readiness — primary school preparation, leadership, advanced literacy and life skills.",color:"rgba(255,255,255,.18)"},
+        ].map(p=>e("div",{key:p.n,style:{background:p.color,borderRadius:12,padding:"10px 12px",marginBottom:8,display:"flex",gap:10,alignItems:"flex-start"}},
+          e("div",{style:{fontSize:22,flexShrink:0}},p.ico),
+          e("div",{style:{flex:1}},
+            e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:2}},
+              e("div",{style:{fontSize:12,fontWeight:800,color:"#fff"}},p.n),
+              e("div",{style:{fontSize:11,fontWeight:700,color:"rgba(255,255,255,.85)"}},p.fee)),
+            e("div",{style:{fontSize:9,color:"rgba(255,255,255,.65)",marginBottom:3}},p.age+(p.kit!=="—"?" · Kit: "+p.kit:"")),
+            e("div",{style:{fontSize:10,color:"rgba(255,255,255,.8)",lineHeight:1.5}},p.desc))))),
+      notes:"Focus on the program that matches the parent\'s child\'s age. Say: \'Every program is specifically designed for that age group — not a one-size-fits-all approach.\' Mention admission fee (₹5,000 one-time, non-refundable) separately. Reassure them that kit fees are also one-time. Quarterly fees can be paid at the start of each term."
     },
     {
-      icon:"🛡️",title:"Safety, Care & Trust",
-      subtitle:"Your Child's Safety Is Our First Priority",
+      icon:"🛡️", num:6,
+      title:"Safety, Care & Trust",
+      subtitle:"Your child is always completely safe here",
       bg:"linear-gradient(135deg,#FFF8F2,#FEF0D6)",
       light:false,
-      trust:[
-        {ico:"📹",t:"CCTV Coverage",d:"Full camera coverage of all classrooms and entry/exit points at all times."},
-        {ico:"⚡",t:"Power Backup",d:"Uninterrupted power supply — no disruption to the school day."},
-        {ico:"👩‍🏫",t:"Qualified Teachers",d:"Trained, background-verified teachers. Low attrition — consistency for your child."},
-        {ico:"📱",t:"Open Communication",d:"Parents can reach us anytime. No gatekeeping. Teachers are always accessible."},
-        {ico:"🤝",t:"Monthly Parent Meets",d:"Regular structured meetings so you always know your child's progress."},
-        {ico:"🏥",t:"Health Protocol",d:"Sick child protocol, hand hygiene, clean environment — health first."},
-      ],
-      notes:"This slide builds trust and addresses the most common parent concern — is my child safe? Be genuine. Invite them to visit the school, look at the CCTV setup, meet the teachers. Transparency is our strength."
+      content:() => e("div",null,
+        e("div",{style:{fontSize:11,color:C.txt2,lineHeight:1.7,marginBottom:14}},
+          "We know that trust takes time. We have designed every aspect of Bhumi Edify Kids so that parents feel completely confident leaving their child with us."),
+        e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:14}},
+          [
+            {ico:"📹",t:"CCTV Throughout",d:"All classrooms, corridors and entry/exit points covered at all times."},
+            {ico:"⚡",t:"Power Backup",d:"Uninterrupted power — no disruption to the school day, ever."},
+            {ico:"👩‍🏫",t:"Verified Teachers",d:"Background-checked, trained educators. Low turnover means consistency for your child."},
+            {ico:"📱",t:"Open Communication",d:"WhatsApp updates, open door policy. Teachers always accessible to parents."},
+            {ico:"🤝",t:"Monthly Parent Meets",d:"Structured progress updates every month so you always know how your child is doing."},
+            {ico:"🏥",t:"Health & Hygiene",d:"Sick child protocol, hand hygiene, sanitised environment — health is our first priority."},
+          ].map(t=>e("div",{key:t.t,style:{background:"rgba(255,255,255,.85)",borderRadius:12,padding:"10px 12px",border:"1.5px solid "+C.bord}},
+            e("div",{style:{fontSize:20,marginBottom:5}},t.ico),
+            e("div",{style:{fontSize:11,fontWeight:800,color:C.txt,marginBottom:3}},t.t),
+            e("div",{style:{fontSize:10,color:C.txt3,lineHeight:1.4}},t.d)))),
+        e("div",{style:{background:C.grnL,borderRadius:12,padding:"10px 14px",border:"1.5px solid "+C.grn,textAlign:"center"}},
+          e("div",{style:{fontSize:12,fontWeight:800,color:C.grn,marginBottom:3}},"🌟 Invite them to visit"),
+          e("div",{style:{fontSize:11,color:C.grn}},"We welcome school visits anytime. See the CCTV, meet the teachers, feel the environment."))),
+      notes:"This slide builds emotional trust. Say: \'I know the hardest part of sending a young child to school is trusting that they are safe and cared for. Let me show you exactly what we do.\' Go through each point genuinely. At the end, invite them for a school visit — \'You don\'t need to take our word for it. Come see it yourself.\'"
     },
     {
-      icon:"⭐",title:"What Parents Say",
-      subtitle:"Real Words from Our School Families",
+      icon:"⭐", num:7,
+      title:"What Parents Say",
+      subtitle:"Real words from our school families",
       bg:"linear-gradient(135deg,#FFF9F0,#FFF4E8)",
       light:false,
-      reviews:[
-        {name:"Priya Sharma",prog:"Playgroup parent · Sept 2025",stars:5,text:"My daughter loves Bhumi Edify! Books AND activities every day — the perfect balance. Hobby Nation is her absolute favourite!"},
-        {name:"Rakesh Naidu",prog:"IK 2 parent · Aug 2025",stars:5,text:"The 3C curriculum is brilliant. My son knows his letters and numbers but also knows how to share and cooperate. Excited every single day!"},
-        {name:"Sunita Reddy",prog:"IK 1 parent · July 2025",stars:5,text:"The teachers are exceptional and so caring. My daughter has blossomed in every way — we are so glad we chose Bhumi Edify."},
-        {name:"Divya Pillai",prog:"Mom & Toddler parent · June 2025",stars:5,text:"The Mom & Toddler program gave my son a gentle, joyful start. The teacher is so patient and warm. Best decision we made."},
-      ],
-      notes:"Let the reviews speak. If parents have questions about authenticity, mention these are real families from your current batch. You can also show them your Google reviews or JustDial rating at this point."
+      content:() => e("div",null,
+        [
+          {name:"Priya Sharma",prog:"IK 1 Parent · 2025",stars:5,text:"My son Aarav has transformed completely. He loves school, comes home singing songs and telling stories. The 3C approach is not just a concept — we see it every day in how he thinks and speaks."},
+          {name:"Rakesh Naidu",prog:"IK 2 Parent · 2025",stars:5,text:"The balance of textbooks and activities is perfect. Arjun is academically strong AND creative AND confident. I was worried he would just memorise things — instead he actually understands and loves learning."},
+          {name:"Sunita Reddy",prog:"Playgroup Parent · 2025",stars:5,text:"Meera went from being very shy to performing on stage at the Annual Day. The teachers here genuinely know and love each child. Best decision we made."},
+          {name:"Divya Pillai",prog:"Mom & Toddler Parent · 2025",stars:5,text:"The Mom & Toddler program was exactly what we needed. It gave Siya and me a beautiful structured start together. The teacher is so warm and patient. We are now joining Playgroup!"},
+        ].map(r=>e("div",{key:r.name,style:{background:"rgba(255,255,255,.9)",borderRadius:14,padding:"12px 14px",marginBottom:10,border:"1.5px solid "+C.bord,borderLeft:"4px solid "+C.pri}},
+          e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:6}},
+            e("div",null,
+              e("div",{style:{fontSize:12,fontWeight:800,color:C.txt}},r.name),
+              e("div",{style:{fontSize:10,color:C.txt3}},r.prog)),
+            e("div",{style:{color:"#F59E0B",fontSize:14}},"★".repeat(r.stars))),
+          e("div",{style:{fontSize:11,color:C.txt2,lineHeight:1.7,fontStyle:"italic"}},'"'+r.text+'"')))),
+      notes:"Let the reviews speak for themselves — read them out slowly. If parents question authenticity, mention these are real families from your current batch. This is also a good moment to offer to connect them with a current parent if they want a reference. You can also show your Google Reviews or JustDial rating on your phone at this point."
     },
     {
-      icon:"🤝",title:"Join the Bhumi Family",
-      subtitle:"Limited Seats · Enquire Today",
+      icon:"🤝", num:8,
+      title:"Join the Bhumi Family",
+      subtitle:"Seats are limited — enquire today",
       bg:"linear-gradient(135deg,#C24E1E,#D4700A,#E8920C)",
       light:true,
-      steps:[
-        {n:1,t:"Call or WhatsApp","d":"Reach out to schedule a school visit at your convenience."},
-        {n:2,t:"School Visit","d":"Come see the classrooms, meet the teachers, feel the environment."},
-        {n:3,t:"Child Interaction","d":"A 20-minute informal play session — no pressure, just fun."},
-        {n:4,t:"Confirm & Enrol","d":"Pay ₹5,000 admission fee to secure your child's seat."},
-      ],
-      contact:{phone1:"88977 23515",phone2:"80082 28441",wa:"70952 12105"},
-      notes:"End with warmth and confidence. Don't pressure. Say: 'We would love for your child to be part of our family. Why don't you come see the school — it speaks for itself.' Have the WhatsApp QR code or number ready."
+      content:() => e("div",null,
+        e("div",{style:{fontSize:12,color:"rgba(255,255,255,.9)",lineHeight:1.7,marginBottom:14}},
+          "We would love for your child to be part of our growing family. Here is how simple it is to get started:"),
+        [
+          {n:1,ico:"📞",t:"Call or WhatsApp Us",d:"Reach out to schedule a school visit at your convenience. No pressure, no commitment."},
+          {n:2,ico:"🏫",t:"Visit the School",d:"Walk through the classrooms, see the environment, meet the teachers. 30 minutes is all you need."},
+          {n:3,ico:"🎮",t:"Child Interaction",d:"A warm, informal 20-minute play session. No test, no interview — just joy. Your child leads the way."},
+          {n:4,ico:"✅",t:"Confirm Your Seat",d:"Pay the ₹5,000 admission fee and your child's seat is secured. We handle the rest."},
+        ].map(st=>e("div",{key:st.n,style:{display:"flex",gap:12,marginBottom:12,alignItems:"flex-start"}},
+          e("div",{style:{width:34,height:34,borderRadius:"50%",background:"rgba(255,255,255,.25)",color:"#fff",fontWeight:900,fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}},st.n),
+          e("div",null,
+            e("div",{style:{fontSize:13,fontWeight:800,color:"#fff",marginBottom:2}},st.ico+" "+st.t),
+            e("div",{style:{fontSize:11,color:"rgba(255,255,255,.85)",lineHeight:1.5}},st.d)))),
+        e("div",{style:{background:"rgba(255,255,255,.18)",borderRadius:14,padding:"12px 14px",marginTop:4}},
+          e("div",{style:{fontSize:13,fontWeight:800,color:"#fff",marginBottom:8}},"📞 Get in Touch Today"),
+          e("div",{style:{fontSize:12,color:"rgba(255,255,255,.9)",marginBottom:4}},"Call: 88977 23515 · 80082 28441"),
+          e("div",{style:{fontSize:12,color:"rgba(255,255,255,.9)",marginBottom:8}},"💬 WhatsApp: 70952 12105"),
+          e("div",{style:{fontSize:11,color:"rgba(255,255,255,.75)"}},"Plot No. 7 & 8, Alwal, Medchal, Hyderabad"))),
+      notes:"End with warmth and genuine confidence — not a hard sell. Say: \'We don\'t push for admissions. We invite you to come and let the school speak for itself. If you feel it is right for your child, we would be honoured to welcome them.\' Have your WhatsApp open and ready. Offer to send them a follow-up message right now so they have your number."
     },
   ];
 
-  const s=SLIDES[idx];
-  const light=s.light;
-  const tc=light?"#fff":C.txt;
-  const tc2=light?"rgba(255,255,255,.85)":C.txt2;
-  const tc3=light?"rgba(255,255,255,.65)":C.txt3;
-  const cardBg=light?"rgba(255,255,255,.18)":"rgba(255,255,255,.85)";
-  const cardCol=light?"#fff":C.txt;
+  const s = SLIDES[idx];
+  const isLight = s.light;
+  const tc  = isLight ? "#fff" : C.txt;
+  const tc2 = isLight ? "rgba(255,255,255,.85)" : C.txt2;
 
-  return e("div",null,
+  return e("div",{className:"fade"},
     // Slide number pills
     e("div",{style:{display:"flex",gap:5,marginBottom:10,overflowX:"auto",paddingBottom:2}},
-      SLIDES.map((_,i)=>e("button",{key:i,onClick:()=>setIdx(i),style:{width:28,height:28,borderRadius:8,border:"none",cursor:"pointer",fontWeight:800,fontSize:11,flexShrink:0,fontFamily:"Nunito",background:idx===i?"linear-gradient(135deg,#C24E1E,#D4700A)":"#F0EEE8",color:idx===i?"#fff":C.txt3}},i+1))),
+      SLIDES.map((_,i)=>e("button",{key:i,onClick:()=>{setIdx(i);setShowNotes(false);},
+        style:{width:28,height:28,borderRadius:8,border:"none",cursor:"pointer",fontWeight:800,fontSize:11,flexShrink:0,
+          background:idx===i?"linear-gradient(135deg,#C24E1E,#D4700A)":"#F0EEE8",
+          color:idx===i?"#fff":C.txt3}},i+1))),
 
     // Main slide
-    e("div",{style:{background:s.bg,borderRadius:22,padding:"1.6rem 1.4rem",minHeight:340,marginBottom:12,position:"relative",overflow:"hidden"}},
+    e("div",{style:{background:s.bg,borderRadius:22,padding:"1.4rem",marginBottom:10,position:"relative",overflow:"hidden",minHeight:320}},
       e("div",{style:{position:"absolute",top:-30,right:-30,width:120,height:120,borderRadius:"50%",background:"rgba(255,255,255,.07)"}}),
       e("div",{style:{position:"absolute",bottom:-20,left:-20,width:80,height:80,borderRadius:"50%",background:"rgba(255,255,255,.05)"}}),
-
-      // Header
-      e("div",{style:{fontSize:10,fontWeight:700,letterSpacing:1.5,opacity:.65,marginBottom:6,textTransform:"uppercase",color:tc}},"Slide "+(idx+1)+" / "+SLIDES.length),
-      e("div",{style:{fontSize:22,fontWeight:900,color:tc,lineHeight:1.25,marginBottom:4,fontFamily:"Nunito"}},s.icon+" "+s.title),
-      e("div",{style:{fontSize:13,fontWeight:600,color:tc2,marginBottom:14,lineHeight:1.4}},s.subtitle),
-
-      // Bullet points
-      s.points&&e("div",{style:{marginBottom:14}},
-        s.points.map((p,i)=>e("div",{key:i,style:{display:"flex",gap:8,alignItems:"center",marginBottom:6}},
-          e("div",{style:{width:6,height:6,borderRadius:"50%",background:tc,flexShrink:0,opacity:.8}}),
-          e("div",{style:{fontSize:12,color:tc2,fontWeight:600}},p)))),
-
-      // Stat row
-      s.stat&&e("div",{style:{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:7,marginBottom:14}},
-        s.stat.map(([v,l])=>e("div",{key:l,style:{background:cardBg,borderRadius:12,padding:"10px 6px",textAlign:"center"}},
-          e("div",{style:{fontSize:18,fontWeight:900,color:cardCol,fontFamily:"Nunito"}},v),
-          e("div",{style:{fontSize:9,color:light?"rgba(255,255,255,.75)":C.txt3,marginTop:2,fontWeight:700}},l)))),
-
-      // Highlight badge
-      s.highlight&&e("div",{style:{background:cardBg,borderRadius:12,padding:"10px 14px",fontSize:12,fontWeight:700,color:cardCol,textAlign:"center"}},s.highlight),
-
-      // 3C Cards
-      s.cards&&e("div",{style:{display:"flex",flexDirection:"column",gap:10}},
-        s.cards.map(c=>e("div",{key:c.title,style:{background:cardBg,borderRadius:14,padding:"12px 14px",display:"flex",gap:12,alignItems:"flex-start"}},
-          e("div",{style:{fontSize:24,flexShrink:0}},c.ico),
-          e("div",null,e("div",{style:{fontSize:13,fontWeight:800,color:cardCol,marginBottom:4,fontFamily:"Nunito"}},c.title),e("div",{style:{fontSize:11,color:light?"rgba(255,255,255,.8)":C.txt2,lineHeight:1.6}},c.body))))),
-
-      // Timeline
-      s.timeline&&e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
-        s.timeline.map((t,i)=>e("div",{key:i,style:{display:"flex",gap:10,alignItems:"center"}},
-          e("div",{style:{fontSize:10,fontWeight:800,color:tc3,width:36,flexShrink:0}},t.time),
-          e("div",{style:{width:28,height:28,borderRadius:"50%",background:cardBg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}},t.ico),
-          e("div",{style:{fontSize:11,color:tc2,fontWeight:600}},t.act)))),
-
-      // Grid (Hobby Nation)
-      s.grid&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-        s.grid.map(g=>e("div",{key:g.t,style:{background:cardBg,borderRadius:12,padding:"10px 12px"}},
-          e("div",{style:{fontSize:18,marginBottom:4}},g.ico),
-          e("div",{style:{fontSize:11,fontWeight:800,color:cardCol,marginBottom:2,fontFamily:"Nunito"}},g.t),
-          e("div",{style:{fontSize:10,color:light?"rgba(255,255,255,.75)":C.txt3,lineHeight:1.4}},g.d)))),
-
-      // Programs list
-      s.programs&&e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
-        s.programs.map(p=>e("div",{key:p.n,style:{background:cardBg,borderRadius:12,padding:"10px 12px",display:"flex",gap:10,alignItems:"flex-start"}},
-          e("div",{style:{fontSize:20,flexShrink:0}},p.ico),
-          e("div",{style:{flex:1}},
-            e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:2}},
-              e("div",{style:{fontSize:12,fontWeight:800,color:cardCol,fontFamily:"Nunito"}},p.n),
-              e("div",{style:{fontSize:10,fontWeight:700,color:light?"rgba(255,255,255,.8)":"#1B7A3E"}},p.fee)),
-            e("div",{style:{fontSize:9,color:light?"rgba(255,255,255,.65)":C.txt3,marginBottom:2}},p.age),
-            e("div",{style:{fontSize:10,color:light?"rgba(255,255,255,.8)":C.txt2,lineHeight:1.4}},p.desc))))),
-
-      // Trust points
-      s.trust&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-        s.trust.map(t=>e("div",{key:t.t,style:{background:cardBg,borderRadius:12,padding:"10px 12px"}},
-          e("div",{style:{fontSize:18,marginBottom:4}},t.ico),
-          e("div",{style:{fontSize:11,fontWeight:800,color:cardCol,marginBottom:3,fontFamily:"Nunito"}},t.t),
-          e("div",{style:{fontSize:10,color:light?"rgba(255,255,255,.75)":C.txt2,lineHeight:1.4}},t.d)))),
-
-      // Reviews
-      s.reviews&&e("div",{style:{display:"flex",flexDirection:"column",gap:10}},
-        s.reviews.map(r=>e("div",{key:r.name,style:{background:cardBg,borderRadius:12,padding:"10px 14px",borderLeft:"4px solid "+C.pri}},
-          e("div",{style:{display:"flex",justifyContent:"space-between",marginBottom:5}},
-            e("div",{style:{fontSize:11,fontWeight:800,color:cardCol,fontFamily:"Nunito"}},r.name),
-            e("div",{style:{color:"#F59E0B",fontSize:12}},"★".repeat(r.stars))),
-          e("div",{style:{fontSize:11,color:light?"rgba(255,255,255,.8)":C.txt2,lineHeight:1.6,fontStyle:"italic",marginBottom:4}},'"'+r.text+'"'),
-          e("div",{style:{fontSize:9,color:tc3}},r.prog)))),
-
-      // Enrol steps
-      s.steps&&e("div",null,
-        s.steps.map(st=>e("div",{key:st.n,style:{display:"flex",gap:12,marginBottom:12,alignItems:"flex-start"}},
-          e("div",{style:{width:30,height:30,borderRadius:"50%",background:"rgba(255,255,255,.25)",color:"#fff",fontWeight:900,fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontFamily:"Nunito"}},st.n),
-          e("div",null,e("div",{style:{fontSize:13,fontWeight:800,color:tc,marginBottom:2,fontFamily:"Nunito"}},st.t),e("div",{style:{fontSize:11,color:tc2,lineHeight:1.5}},st.d)))),
-        s.contact&&e("div",{style:{background:"rgba(255,255,255,.18)",borderRadius:14,padding:"12px 14px",marginTop:4}},
-          e("div",{style:{fontSize:12,fontWeight:800,color:"#fff",marginBottom:6,fontFamily:"Nunito"}},"📞 Get in Touch"),
-          e("div",{style:{fontSize:12,color:"rgba(255,255,255,.9)"}},s.contact.phone1+" · "+s.contact.phone2),
-          e("div",{style:{fontSize:12,color:"rgba(255,255,255,.9)"}},"💬 WhatsApp: "+s.contact.wa)))),
+      e("div",{style:{fontSize:10,fontWeight:700,letterSpacing:1.5,opacity:.65,marginBottom:6,textTransform:"uppercase",color:tc}},"Slide "+s.num+" / "+SLIDES.length),
+      e("div",{style:{fontSize:20,fontWeight:900,color:tc,lineHeight:1.25,marginBottom:4}},s.icon+" "+s.title),
+      e("div",{style:{fontSize:12,fontWeight:600,color:tc2,marginBottom:14,lineHeight:1.4}},s.subtitle),
+      s.content()),
 
     // Speaker notes toggle
-    e("button",{onClick:()=>setShowNotes(n=>!n),style:{width:"100%",padding:"7px",background:C.priL,color:C.priD,border:"1.5px solid "+C.priM,borderRadius:10,fontSize:11,fontWeight:700,cursor:"pointer",marginBottom:8}},showNotes?"▲ Hide Speaker Notes":"📝 Show Speaker Notes"),
+    e("button",{onClick:()=>setShowNotes(n=>!n),
+      style:{width:"100%",padding:"8px",background:C.priL,color:C.priD,border:"1.5px solid "+C.priM,borderRadius:10,fontSize:11,fontWeight:700,cursor:"pointer",marginBottom:8}},
+      showNotes?"▲ Hide Speaker Notes":"📝 Show Speaker Notes (for presenter)"),
+
     showNotes&&e("div",{style:{background:"#FFFCE8",border:"1.5px solid #F4E08A",borderRadius:12,padding:"12px 14px",marginBottom:10}},
       e("div",{style:{fontSize:10,fontWeight:800,color:"#7B6000",marginBottom:6,textTransform:"uppercase",letterSpacing:.5}},"🎤 Speaker Notes — for your eyes only"),
-      e("div",{style:{fontSize:12,color:"#7B4000",lineHeight:1.8}},s.notes)),
+      e("div",{style:{fontSize:12,color:"#7B4000",lineHeight:1.85}},s.notes)),
 
-    // Nav buttons
-    e("div",{style:{display:"flex",gap:8}},
-      e("button",{onClick:()=>setIdx(i=>Math.max(0,i-1)),disabled:idx===0,style:{flex:1,padding:"10px",background:"#fff",border:"1.5px solid "+C.bord,borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===0?"not-allowed":"pointer",opacity:idx===0?.4:1,color:C.txt}},"‹ Prev"),
-      e("div",{style:{display:"flex",alignItems:"center",gap:4}},
-        SLIDES.map((_,i)=>e("div",{key:i,style:{width:i===idx?20:6,height:6,borderRadius:3,background:i===idx?C.pri:C.bord,transition:"width .3s"}}))),
-      e("button",{onClick:()=>setIdx(i=>Math.min(SLIDES.length-1,i+1)),disabled:idx===SLIDES.length-1,style:{flex:1,padding:"10px",background:idx===SLIDES.length-1?"#F0EEE8":"linear-gradient(135deg,#C24E1E,#D4700A)",border:"none",borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===SLIDES.length-1?"not-allowed":"pointer",color:idx===SLIDES.length-1?C.txt3:"#fff"}},idx===SLIDES.length-1?"✅ Done":"Next ›")));
+    // Progress dots + nav
+    e("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:4}},
+      e("button",{onClick:()=>{setIdx(i=>Math.max(0,i-1));setShowNotes(false);},disabled:idx===0,
+        style:{flex:1,padding:"10px",background:"#fff",border:"1.5px solid "+C.bord,borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===0?"not-allowed":"pointer",opacity:idx===0?.4:1,color:C.txt}},"‹ Prev"),
+      e("div",{style:{display:"flex",alignItems:"center",gap:3}},
+        SLIDES.map((_,i)=>e("div",{key:i,style:{width:i===idx?18:5,height:5,borderRadius:3,background:i===idx?C.pri:C.bord,transition:"width .3s"}}))),
+      e("button",{onClick:()=>{setIdx(i=>Math.min(SLIDES.length-1,i+1));setShowNotes(false);},disabled:idx===SLIDES.length-1,
+        style:{flex:1,padding:"10px",background:idx===SLIDES.length-1?"#F0EEE8":"linear-gradient(135deg,#C24E1E,#D4700A)",border:"none",borderRadius:12,fontSize:13,fontWeight:700,cursor:idx===SLIDES.length-1?"not-allowed":"pointer",color:idx===SLIDES.length-1?C.txt3:"#fff"}},
+        idx===SLIDES.length-1?"✅ Done":"Next ›")));
 }
 
-// ── CONNECT SCREEN ──
 function ConnectScreen({info}){
+  info = info||{};
   return e("div",{className:"fade"},
     e(GradHead,{icon:"🔗",title:"Connect With Us",sub:"Call · WhatsApp · Social Media · Share"}),
     e(Card,null,
@@ -715,6 +736,7 @@ function InventoryScreen({inventory,onSave,isAdmin}){
 
 // ── ADMISSIONS ──
 function AdmissionsScreen({students,info}){
+  info = info||{}; students = students||[];
   const progs=[
     {prog:"🤱 Mom & Toddler",age:"18–30 months",seats:20,fee:"₹6,000/month",kit:"—",desc:"Sensory play & early bonding"},
     {prog:"🌱 Playgroup",age:"2–3 years",seats:25,fee:"₹35,000/qtr",kit:"₹6,899",desc:"Early 3C learning through play"},
@@ -995,7 +1017,8 @@ function FinanceScreen({students,feeData,onSaveFee,staffList,onSaveStaff,receipt
 }
 
 // ── NOTEBOOK ──
-function NotebookScreen({notes,onSaveNotes,tasks,onSaveTasks,isAdmin,authName}){
+function NotebookScreen({notes,onSaveNotes,tasks,onSaveTasks,isAdmin,authName,cNotes,onSaveCNotes,pComms,onSavePComms}){
+  cNotes = cNotes||[]; pComms = pComms||[]; onSaveCNotes = onSaveCNotes||function(){}; onSavePComms = onSavePComms||function(){};
   const [sub,setSub]=useState("notes");
   const [nF,setNF]=useState({title:"",body:"",prog:"All Programs",tag:"General"});
   const [tF,setTF]=useState({title:"",prog:"All Programs",due:"",priority:"Medium"});
@@ -1086,6 +1109,7 @@ function ActivitiesScreen({activities,onSave,isAdmin}){
 
 // ── SETTINGS ──
 function SettingsScreen({darkMode,onDarkMode,apiUrl,onChangeApi,onRefresh,users,onSaveUsers}){
+  onRefresh = onRefresh||function(){}; onChangeApi = onChangeApi||function(){}; apiUrl = apiUrl||"";
   const [editU,setEditU]=useState(null);
   const [np,setNp]=useState(""),
         [nn,setNn]=useState(""),
